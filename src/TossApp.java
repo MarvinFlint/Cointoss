@@ -26,12 +26,13 @@ public class TossApp extends JFrame {
         // set title-frame
         setTitle("Heads or Tails");
         // set size
-        setSize(200, 400);
+        setSize(400, 200);
         // set Layout
         setLayout(new FlowLayout());
 
-        // create and add the button
+        // create and add the buttons
         coinTossButton = new JButton("50 | 50");
+        resetButton = new JButton("Reset the counters");
         add(coinTossButton);
 
         // set labels
@@ -46,10 +47,17 @@ public class TossApp extends JFrame {
         add(headsCounter);
         add(tailsCounter);
 
-        // Controller
+        // add reset-button for counter
+        add(resetButton);
+
+        // Controllers
         TossController controller = new TossController(outputLabel, coin, headsCounter, tailsCounter);
-        // event trigger
+        // extra - resets
+        ResetController rcontroller = new ResetController(coin, headsCounter, tailsCounter, outputLabel);
+
+        // event triggers
         coinTossButton.addActionListener(controller);
+        resetButton.addActionListener((rcontroller));
     }
 
 }
