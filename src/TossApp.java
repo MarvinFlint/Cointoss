@@ -6,6 +6,8 @@ public class TossApp extends JFrame {
     // create coin object
     Coin coin;
 
+    // create panel
+    JPanel coinFlipApp = new JPanel();
     // create buttons
     // buttons to flip a coin
     JButton coinTossButton;
@@ -23,17 +25,22 @@ public class TossApp extends JFrame {
     public TossApp(){
         // generate coin object
         coin = new Coin();
+
+        // quit program on window closure
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        // assign layout to panel
+        coinFlipApp.setLayout(new BoxLayout(coinFlipApp, BoxLayout.Y_AXIS));
+
         // set title-frame
         setTitle("Heads or Tails");
         // set size
-        setSize(400, 200);
-        // set Layout
-        setLayout(new FlowLayout());
+        setSize(250, 200);
 
         // create and add the buttons
         coinTossButton = new JButton("50 | 50");
         resetButton = new JButton("Reset the counters");
-        add(coinTossButton);
+        coinFlipApp.add(coinTossButton);
 
         // set labels
         instruction = new JLabel("Press the button to toss a coin!");
@@ -42,13 +49,13 @@ public class TossApp extends JFrame {
         tailsCounter = new JLabel("# of tails-rolls: " + coin.tailsCounter);
 
         // add labels to layout
-        add(instruction);
-        add(outputLabel);
-        add(headsCounter);
-        add(tailsCounter);
+        coinFlipApp.add(instruction);
+        coinFlipApp.add(outputLabel);
+        coinFlipApp.add(headsCounter);
+        coinFlipApp.add(tailsCounter);
 
         // add reset-button for counter
-        add(resetButton);
+        coinFlipApp.add(resetButton);
 
         // Controllers
         TossController controller = new TossController(outputLabel, coin, headsCounter, tailsCounter);
@@ -58,6 +65,7 @@ public class TossApp extends JFrame {
         // event triggers
         coinTossButton.addActionListener(controller);
         resetButton.addActionListener((rcontroller));
-    }
 
+        add(coinFlipApp);
+    }
 }

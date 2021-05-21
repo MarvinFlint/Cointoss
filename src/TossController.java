@@ -25,7 +25,7 @@ public class TossController implements ActionListener {
         // flip the coin, aka generate a 1 or a 2
         coin.flip();
         // check if the result is even
-        if(coin.decider % 2 == 0){
+        if(coin.decider){
             result.setText("Head");
             coin.headCounter++;
         }
